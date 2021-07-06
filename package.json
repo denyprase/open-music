@@ -6,7 +6,8 @@
   "scripts": {
     "start-dev": "nodemon ./src/server.js",
     "lint": "eslint ./",
-    "test-db-connection": "node ./src/services/postgres/test.js"
+    "test-db-connection": "node ./src/services/postgres/test.js",
+    "migrate": "node-pg-migrate"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@hapi/hapi": "^20.1.5",
     "dotenv": "^10.0.0",
+    "node-pg-migrate": "^5.10.0",
     "pg": "^8.6.0"
   }
 }
