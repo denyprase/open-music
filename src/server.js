@@ -1,4 +1,5 @@
 const Hapi = require('@hapi/hapi');
+const songs = require('./api/songs');
 
 const init = async () => {
   const server = Hapi.server({
@@ -9,6 +10,11 @@ const init = async () => {
         origin: ['*'],
       },
     },
+  });
+
+  await server.register({
+    plugin: songs,
+    options: { songs: [] },
   });
 
   await server.start();
