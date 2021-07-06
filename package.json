@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "nodemon ./src/server.js",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "test-db-connection": "node ./src/services/postgres/test.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,8 @@
     "nodemon": "^2.0.9"
   },
   "dependencies": {
-    "@hapi/hapi": "^20.1.5"
+    "@hapi/hapi": "^20.1.5",
+    "dotenv": "^10.0.0",
+    "pg": "^8.6.0"
   }
 }
