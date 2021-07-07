@@ -2,6 +2,8 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
+const InvariantError = require('../../exceptions/InvariantError');
+const NotFoundError = require('../../exceptions/NotFoundError');
 
 class SongsService {
   constructor() {
@@ -24,7 +26,7 @@ class SongsService {
     };
     const result = await this._pool.query(query);
     if (!result.rows[0].id) {
-      throw new Error('Lagu gagal ditambahkan');
+      throw new InvariantError('Lagu gagal ditambahkan');
     }
     return result.rows[0].id;
   }
@@ -42,7 +44,7 @@ class SongsService {
     };
     const result = await this._pool.query(query);
     if (!result.rows.length) {
-      throw new Error('Lagu tidak ditemukan');
+      throw new NotFoundError('Lagu tidak ditemukan');
     }
     return result.rows;
   }
@@ -61,7 +63,7 @@ class SongsService {
     };
     const result = await this._pool.query(query);
     if (!result.rows.length) {
-      throw new Error('Gagal memperbarui lagu. Id tidak ditemukan');
+      throw new NotFoundError('Gagal memperbarui lagu. Id tidak ditemukan');
     }
     return result.rows;
   }
@@ -73,7 +75,7 @@ class SongsService {
     };
     const result = await this._pool.query(query);
     if (!result.rows.length) {
-      throw new Error('Lagu gagal dihapus. Id tidak ditemukan');
+      throw new NotFoundError('Lagu gagal dihapus. Id tidak ditemukan');
     }
   }
 }
