@@ -1,7 +1,9 @@
 const Hapi = require('@hapi/hapi');
 const songs = require('./api/songs');
+const SongsService = require('./services/postgres/SongsService');
 
 const init = async () => {
+  const songsService = new SongsService();
   const server = Hapi.server({
     port: 5000,
     host: 'localhost',
@@ -14,7 +16,9 @@ const init = async () => {
 
   await server.register({
     plugin: songs,
-    options: { songs: [] },
+    options: {
+      service: songsService,
+    },
   });
 
   await server.start();

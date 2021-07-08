@@ -32,7 +32,7 @@ class SongsService {
   }
 
   async getSongs() {
-    const query = 'SELECT * FROM openmusic.songs';
+    const query = 'SELECT id, title, performer FROM openmusic.songs';
     const result = await this._pool.query(query);
     return result.rows;
   }
