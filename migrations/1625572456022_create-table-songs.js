@@ -5,7 +5,7 @@ exports.shorthands = undefined;
 exports.up = (pgm) => {
   pgm.createTable(
     {
-      schema: 'openmusic',
+      // schema: 'openmusic',
       name: 'songs',
     },
     {
@@ -47,7 +47,7 @@ exports.up = (pgm) => {
 
 exports.down = (pgm) => {
   pgm.dropTable({
-    schema: 'openmusic',
+    // schema: 'openmusic',
     name: 'songs',
   });
 };
