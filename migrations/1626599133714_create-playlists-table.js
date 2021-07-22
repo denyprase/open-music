@@ -1,7 +1,5 @@
 /* eslint-disable camelcase */
 
-exports.shorthands = undefined;
-// id, name, owner
 exports.up = (pgm) => {
   pgm.createTable('playlists', {
     id: {
