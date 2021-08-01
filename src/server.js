@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
 
@@ -21,6 +22,10 @@ const PlaylistsValidator = require('./validator/playlists');
 const collaborations = require('./api/collaborations');
 const CollaborationsService = require('./services/postgres/CollaborationsService');
 const CollaborationsValidator = require('./validator/collaborations');
+
+const _exports = require('./api/exports');
+const ProducerService = require('./services/rabbitmq/ProducerService');
+const ExportsValidator = require('./validator/exports');
 
 const init = async () => {
   const songsService = new SongsService();
@@ -100,6 +105,14 @@ const init = async () => {
         collaborationsService,
         playlistsService,
         validator: CollaborationsValidator,
+      },
+    },
+    {
+      plugin: _exports,
+      options: {
+        ProducerService,
+        playlistsService,
+        validator: ExportsValidator,
       },
     },
   ]);
